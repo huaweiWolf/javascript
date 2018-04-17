@@ -50,3 +50,21 @@ function flatMethod(arr) {
 }
 console.log(flatMethod(arr));
 </pre>
+
+## 方法 3：递归
+<pre>
+var arr = [1, 2, ["3", 4, "5", [6, ["7", 8]]]];
+function decreaseDim(arr) {
+    var result = [];
+    arr.forEach(function(item) {
+        //数组类型的判断  
+        if (item.constructor == Array && item instanceof Array) {
+            result = result.concat(decreaseDim(item));
+        } else{
+            result.push(item);
+        }
+    });
+    return result;
+}
+console.log(decreaseDim(arr));
+</pre>
