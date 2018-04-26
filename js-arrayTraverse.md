@@ -68,3 +68,25 @@ function decreaseDim(arr) {
 }
 console.log(decreaseDim(arr));
 </pre>
+
+## 方法 4：ES6的generator(yield)
+<pre>
+var arr = [1, 2, ["3", 4, "5", [6, ["7", 8]]]];
+function* flat(arr) {
+    var j = 0;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] instanceof Array) {
+            yield * flat(arr[i]);
+        } else {
+            yield arr[i];
+        }
+    }
+    return arrRes;
+}
+
+var arrRes = [];
+for(let item of flat(arr)) {
+    arrRes.push(item);
+}
+console.log(arrRes);
+</pre>
