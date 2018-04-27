@@ -19,12 +19,11 @@ function throttle(fn, delay, interval) {
     return function() {
         var timeNow = new Date().getTime();
         if (!lastTime) lastTime = timeNow;
+        clearTimeout(timeId);
         if (interval && (timeNow - lastTime) > interval) {
             fn();
             lastTime = timeNow;
-            clearTimeout(timeId);
         } else {
-            clearTimeout(timeId);
             timeId = setTimeout(fn, delay);
         }
     };
